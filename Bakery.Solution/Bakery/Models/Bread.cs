@@ -14,5 +14,10 @@ namespace Bakery.Models
     }
 
     public Bread() : this(DefaultCost) {}
+
+    public int Buy(int amount)
+    {
+      return (amount - (amount / 3)) * Cost;
+    }
   }
 }
