@@ -8,14 +8,22 @@ namespace Bakery
   {
     public static void Main() 
     {
-      Bread bread = new Bread();
-      Pastry pastry = new Pastry();
+      Dictionary<BakedGood, int> goodsAndQuantities = new Dictionary<BakedGood, int>()
+      {
+        {new Bread("Baguettes"), 0},
+        {new Pastry("Donuts"), 0}
+      };
 
+      int totalCost = 0;
       Console.WriteLine("Welcome to the bakery!");
-      int breadQuantity = int.Parse(GetInput("How much bread would you like? "));
-      int pastryQuantity = int.Parse(GetInput("How many pastries would you like? "));
+      foreach (BakedGood good in goodsAndQuantities.Keys)
+      {
+        int quantity = int.Parse(GetInput($"How many {good.Name} would you like? "));
+        goodsAndQuantities[good] = quantity;
+        totalCost += good.Buy(quantity);
+      }
 
-      Console.WriteLine($"That will cost ${bread.Buy(breadQuantity) + pastry.Buy(pastryQuantity)}");
+      Console.WriteLine($"That will cost ${totalCost}");
       Console.WriteLine("Come again soon!");
     }
 
