@@ -6,13 +6,13 @@ namespace Bakery.Models
   public class Pastry
   {
     public Dictionary<int, int> Deals { get; set; }
-    private const Dictionary<int, int> DefaultDeals = new Dictionary<int, int>
+    private static Dictionary<int, int> _defaultDeals = new Dictionary<int, int>
     {
-      {1, 2},
-      {3, 5},
-      {4, 7},
+      {6, 10},
       {5, 9},
-      {6, 10}
+      {4, 7},
+      {3, 5},
+      {1, 2}
     };
 
     public Pastry(Dictionary<int, int> deals) 
@@ -20,8 +20,23 @@ namespace Bakery.Models
       Deals = new Dictionary<int, int>(deals);
     }
 
-    public Pastry() : this(DefaultDeals) {}
+    public Pastry() : this(_defaultDeals) {}
 
-    
+    public int Buy(int amount)
+    {
+      int cost = 0;
+      foreach (int quantity in Deals.Keys)
+      {
+        if (amount < 0)
+        {
+          break;
+        }
+        int dealAmount = amount / quantity;
+        cost += dealAmount * Deals[quantity];
+        amount -= quantity * dealAmount;
+      }
+
+      return cost;
+    }
   }
 }

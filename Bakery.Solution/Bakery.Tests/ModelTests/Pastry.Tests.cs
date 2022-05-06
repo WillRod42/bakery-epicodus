@@ -14,5 +14,33 @@ namespace Bakery.Tests
       Pastry newPastry = new Pastry();
       Assert.AreEqual(typeof(Pastry), newPastry.GetType());
     }
+
+    [TestMethod]
+    public void Buy_ReturnCostOfOnePastry_2()
+    {
+      Pastry testPastry = new Pastry();
+      Assert.AreEqual(2, testPastry.Buy(1));
+    }
+
+    [TestMethod]
+    public void Buy_ReturnCostOfThreePastries_5()
+    {
+      Pastry testPastry = new Pastry();
+      Assert.AreEqual(5, testPastry.Buy(3));
+    }
+
+    [TestMethod]
+    public void Buy_ReturnCostOfFourPastries_4()
+    {
+      Pastry testPastry = new Pastry();
+      Assert.AreEqual(7, testPastry.Buy(4));
+    }
+
+    [TestMethod]
+    public void Buy_ReturnCostOfFourteenPastries_24()
+    {
+      Pastry testPastry = new Pastry();
+      Assert.AreEqual(24, testPastry.Buy(14));
+    }
   }
 }
